@@ -76,7 +76,7 @@ void glut_display(void) {
                     z = z*z + c;
                     z = z*z + c;
                     double j = i + 3 - log(log(z._x * z._x + z._y * z._y))/log(2);
-                    if( j < 0.0 ) j = 0.0;
+                    //if( j < 0.0 ) j = 0.0;
                     mandelbrot[row][col] = j/iters;
                 } else {
                     mandelbrot[row][col] = -1.0;
