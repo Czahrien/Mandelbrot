@@ -10,13 +10,13 @@
 #include <cmath>
 
 #ifdef __APPLE__
-#include <GLUT/glut.h>
-#include <OpenGL/gl.h>
-#include <OpenGL/glu.h>
+    #include <GLUT/glut.h>
+    #include <OpenGL/gl.h>
+    #include <OpenGL/glu.h>
 #else
-#include <GL/glut.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
+    #include <GL/glut.h>
+    #include <GL/gl.h>
+    #include <GL/glu.h>
 #endif
 
 #include "complex.h"
@@ -105,7 +105,6 @@ void glut_display(void) {
         if( g < 0.05 ) up = 1;
     }
     glEnd();
-    //glFlush();
     glutSwapBuffers();
 }
 

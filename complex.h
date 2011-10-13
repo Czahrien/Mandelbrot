@@ -9,6 +9,8 @@
 #ifndef Mandelbrot_complex_h
 #define Mandelbrot_complex_h
 #include <iostream>
+
+// complex represents a complex number in the form (x+yi)
 class complex {
 public: // *structors
     complex();
