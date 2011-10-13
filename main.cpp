@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <cmath>
+
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #include <OpenGL/gl.h>
@@ -17,6 +18,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
+
 #include "complex.h"
 
 using namespace std;
@@ -43,6 +45,9 @@ double g = 0.1;
 
 void glut_init(void);
 void glut_display(void);
+void keyboard(unsigned char,int,int);
+void mouse(int,int,int);
+void timer(int);
 void test(void);
 color hsv_to_rgb( double h );
 
