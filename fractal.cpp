@@ -63,11 +63,27 @@ void fractal::set_gamma( const double& g ) {
     _g = g;
 }
 
+int fractal::iters() const {
+    return _iters;
+}
+
+void fractal::set_iters( int i ) {
+    _iters = i;
+}
+
 const double ** fractal::get_fractal() {
     if( _redraw ) {
         draw_fractal();
         _redraw = 0;
     }
     return (const double**)_pixels;
+}
+
+std::ostream& operator<<( std::ostream& out, const fractal& f ) {
+    out << "Center: (" << f._center_x << "," << f._center_y << ")" << std::endl;
+    out << "Res: " << f._res << std::endl;
+    out << f._iters << " " << f._g << std::endl;
+    out << "Window Size: " << f._window_width << "*" << f._window_height << std::endl;
+    return out;
 }
 

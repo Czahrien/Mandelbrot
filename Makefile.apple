@@ -28,7 +28,7 @@
 		$(RM) $%
 
 CC =		gcc
-CXX =		g++
+CXX =		llvm-g++
 
 RM = rm -f
 AR = ar

@@ -107,6 +107,17 @@ void keyboard( unsigned char key, int x, int y ) {
             m.zoom_in(2.0);
             //scene_change = 1;
             break;
+        case ';':
+            m.set_iters(m.iters() - 250);
+            cout << m.iters() << endl;
+            break;
+        case '\'':
+            m.set_iters(m.iters() + 250);
+            cout << m.iters();
+            break;
+        case 'd':
+            cout << m << endl;
+            break;
     }
     glutPostRedisplay();
 }
