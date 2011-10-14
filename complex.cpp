@@ -20,11 +20,11 @@ complex::complex(const complex& c) : _x(c._x), _y(c._y) {}
 
 complex::~complex() {}
 
-long double complex::real() {
+long double complex::real() const {
     return _x;
 }
 
-long double complex::imag() {
+long double complex::imag() const {
     return _y;
 }
 
@@ -36,13 +36,13 @@ void complex::set_imag( long double i ) {
     _y = i;
 }
 
-complex complex::operator*(const complex &rhs) {
+complex complex::operator*(const complex &rhs) const {
     long double real = _x * rhs._x - _y * rhs._y;
     long double imag = _x * rhs._y + _y * rhs._x;
     return complex(real,imag);
 }
 
-complex complex::operator/(const complex &rhs) {
+complex complex::operator/(const complex &rhs) const {
     //rhs is the denominator, find it's conjugate
     complex conj(rhs._x,-rhs._y);
     complex top = *this * conj;
@@ -52,11 +52,11 @@ complex complex::operator/(const complex &rhs) {
     return top;
 }
 
-complex complex::operator+(const complex &rhs) {
+complex complex::operator+(const complex &rhs) const {
     return complex(_x+rhs._x,_y+rhs._y);
 }
 
-complex complex::operator-(const complex &rhs) {
+complex complex::operator-(const complex &rhs) const {
     return complex(_x-rhs._x,_y-rhs._y);
 }
 
@@ -99,7 +99,7 @@ complex& complex::operator/=(const complex &rhs) {
     return *this;
 }
 
-complex complex::operator-() {
+complex complex::operator-() const {
     return complex(-_x,-_y);
 }
 

@@ -38,19 +38,19 @@ COMPILE.c = $(CC) $(CFLAGS) $(CPPFLAGS) -c
 COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
 
 ########## Default flags (redefine these with a header.mak file if desired)
-CXXFLAGS =	-ggdb
+CXXFLAGS =	-ggdb -O3
 CFLAGS =	-ggdb
 CLIBFLAGS =	-lm -framework OpenGL -framework GLUT -framework Carbon
 CCLIBFLAGS = $(CLIBFLAGS)
 ########## End of default flags
 
 
-CPP_FILES =	 complex.cpp main.cpp
+CPP_FILES =	 color.cpp complex.cpp main.cpp mandelbrot.cpp fractal.cpp
 C_FILES =	
 H_FILES =	 complex.h
 SOURCEFILES =	$(H_FILES) $(CPP_FILES) $(C_FILES)
 .PRECIOUS:	$(SOURCEFILES)
-OBJFILES =	 complex.o
+OBJFILES =	 color.o complex.o mandelbrot.o fractal.o
 
 #
 # Main targets

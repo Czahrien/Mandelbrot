@@ -19,16 +19,16 @@ public: // *structors
     complex(const complex& c);
     ~complex();
 public:
-    long double real();
-    long double imag();
+    long double real() const;
+    long double imag() const;
     void set_real(long double r);
     void set_imag(long double i);
 public: // operator overloads involving complex numbers
-    complex operator+(const complex& rhs);
-    complex operator-(const complex& rhs);
-    complex operator*(const complex& rhs);
-    complex operator/(const complex& rhs);
-    complex operator-();
+    complex operator+(const complex& rhs) const;
+    complex operator-(const complex& rhs) const;
+    complex operator*(const complex& rhs) const;
+    complex operator/(const complex& rhs) const;
+    complex operator-() const;
     complex& operator+=(const complex& rhs);
     complex& operator-=(const complex& rhs);
     complex& operator*=(const complex& rhs);

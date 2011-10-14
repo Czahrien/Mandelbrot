@@ -45,12 +45,12 @@ CCLIBFLAGS = $(CLIBFLAGS)
 ########## End of default flags
 
 
-CPP_FILES =	 complex.cpp main.cpp
+CPP_FILES =	 color.cpp complex.cpp main.cpp
 C_FILES =	
 H_FILES =	 complex.h
 SOURCEFILES =	$(H_FILES) $(CPP_FILES) $(C_FILES)
 .PRECIOUS:	$(SOURCEFILES)
-OBJFILES =	 complex.o
+OBJFILES =	 color.o complex.o
 
 #
 # Main targets
