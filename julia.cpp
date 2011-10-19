@@ -12,6 +12,7 @@
 #include "complex.h"
 
 julia::julia() : fractal() {}
+
 julia::julia( int window_width, int window_height, const complex& c ) : fractal( window_width, window_height ), _c(c) {}
 
 julia::julia( const julia& j ) : fractal(j), _c(j._c) {}
