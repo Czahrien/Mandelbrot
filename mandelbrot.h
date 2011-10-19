@@ -12,6 +12,7 @@
 
 class mandelbrot : public fractal {
 public:
+    mandelbrot();
     mandelbrot( int window_width, int window_height );
     mandelbrot( const mandelbrot& m );
     ~mandelbrot();

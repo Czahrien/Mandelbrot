@@ -8,6 +8,8 @@
 
 #include "fractal.h"
 
+fractal::fractal() : _window_width(800), _window_height(600), _iters(1000), _center_x(0.0), _center_y(0.0), _res(0.005),  _g(2.5), _redraw(1) {}
+
 fractal::fractal( int window_width, int window_height ) : _window_width(window_width), _window_height(window_height), _iters(1000), _center_x(0.0), _center_y(0.0), _res(0.005),  _g(2.5), _redraw(1) {
     _pixels = new double*[_window_height];
     for( int i = 0; i < _window_height; ++i ) {
@@ -69,6 +71,20 @@ int fractal::iters() const {
 
 void fractal::set_iters( int i ) {
     _iters = i;
+}
+
+void fractal::resize( int width, int height ) {
+    for( int i = 0; i < _window_height; ++i ) {
+        delete[] _pixels[i];
+    }
+    delete[] _pixels;
+    _window_width = width;
+    _window_height = height;
+    _pixels = new double*[_window_height];
+    for( int i = 0; i < _window_height; ++i ) {
+        _pixels[i] = new double[_window_width];
+    }
+    _redraw = 1;
 }
 
 const double ** fractal::get_fractal() {

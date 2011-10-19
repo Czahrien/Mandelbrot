@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <sstream>
 #include <cmath>
 #include "mandelbrot.h"
 #include "julia.h"
@@ -26,8 +27,9 @@
 
 using namespace std;
 
-#define WINDOW_HORIZONTAL_SIZE 800
-#define WINDOW_VERTICAL_SIZE 600
+int WINDOW_HORIZONTAL_SIZE =  800;
+int WINDOW_VERTICAL_SIZE =  600;
+
 julia m(WINDOW_HORIZONTAL_SIZE,WINDOW_VERTICAL_SIZE, complex(-0.8,0.156));
 
 void glut_init(void);
@@ -49,9 +51,9 @@ void glut_display(void) {
     static int up = 0;
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glBegin(GL_POINTS);
-    const double ** mandelbrot = m.get_fractal();
+    const double ** pixels = m.get_fractal();
     for( int row = 0; row < WINDOW_VERTICAL_SIZE; ++row) {
-        const double* r = mandelbrot[row];
+        const double* r = pixels[row];
         for( int col = 0; col < WINDOW_HORIZONTAL_SIZE; ++col ) {
             color c = {0,0,0};
             if( *r > 0 ) {
@@ -98,15 +100,12 @@ void keyboard( unsigned char key, int x, int y ) {
             break;
         case '[':
             m.set_gamma(m.gamma() / 1.1);
-            //scene_change = 1;
             break;
         case '-':
             m.zoom_out(2.0);
-            //scene_change = 1;
             break;
         case '+':
             m.zoom_in(2.0);
-            //scene_change = 1;
             break;
         case ';':
             m.set_iters(m.iters() - 250);
@@ -132,11 +131,26 @@ void timer( int value ) {
 
 int main (int argc, char ** argv)
 {
+    if( argc == 3 ) {
+        stringstream ss( stringstream::in | stringstream::out );
+        ss.str( argv[1] );
+        ss >> WINDOW_HORIZONTAL_SIZE; 
+        ss.clear();
+        ss.str( argv[2] );
+        ss >> WINDOW_VERTICAL_SIZE; 
+ 
+        if( WINDOW_HORIZONTAL_SIZE <= 0 && WINDOW_VERTICAL_SIZE <= 0 ) {
+            cerr << "Usage: " << argv[0] << " [width] [height]" << endl;
+            return 1;
+        }       
+        m.resize(WINDOW_HORIZONTAL_SIZE, WINDOW_VERTICAL_SIZE);
+    }
+
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(WINDOW_HORIZONTAL_SIZE, WINDOW_VERTICAL_SIZE);
     glutInitWindowPosition(100, 150);
-    glutCreateWindow("Mandelbrot");
+    glutCreateWindow("Fractal Viewer");
     glutDisplayFunc(glut_display);
     glutMouseFunc(mouse);
     glutKeyboardFunc(keyboard);

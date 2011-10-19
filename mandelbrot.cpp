@@ -9,6 +9,8 @@
 #include <cmath>
 #include "mandelbrot.h"
 
+mandelbrot::mandelbrot() : fractal() {}
+
 mandelbrot::mandelbrot( int window_width, int window_height ) : fractal( window_width, window_height ) {}
 
 mandelbrot::mandelbrot( const mandelbrot& m ) : fractal(m) {}

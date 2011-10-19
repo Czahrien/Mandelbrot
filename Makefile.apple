@@ -38,8 +38,8 @@ COMPILE.c = $(CC) $(CFLAGS) $(CPPFLAGS) -c
 COMPILE.cc = $(CXX) $(CXXFLAGS) $(CPPFLAGS) -c
 
 ########## Default flags (redefine these with a header.mak file if desired)
-CXXFLAGS =	-ggdb -O3
-CFLAGS =	-ggdb
+CXXFLAGS =	-Wall -O3
+CFLAGS =	
 CLIBFLAGS =	-lm -framework OpenGL -framework GLUT -framework Carbon
 CCLIBFLAGS = $(CLIBFLAGS)
 ########## End of default flags
