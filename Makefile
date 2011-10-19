@@ -45,12 +45,12 @@ CCLIBFLAGS = $(CLIBFLAGS)
 ########## End of default flags
 
 
-CPP_FILES =	 color.cpp complex.cpp main.cpp fractal.cpp mandelbrot.cpp
+CPP_FILES =	 color.cpp complex.cpp main.cpp fractal.cpp mandelbrot.cpp julia.cpp
 C_FILES =	
 H_FILES =	 complex.h
 SOURCEFILES =	$(H_FILES) $(CPP_FILES) $(C_FILES)
 .PRECIOUS:	$(SOURCEFILES)
-OBJFILES =	 color.o complex.o fractal.o mandelbrot.o
+OBJFILES =	 color.o complex.o fractal.o mandelbrot.o julia.o
 
 #
 # Main targets
@@ -66,7 +66,10 @@ main:	main.o $(OBJFILES)
 #
 
 complex.o:	 complex.h
-main.o:	 complex.h
+main.o:	 complex.h color.h julia.h mandelbrot.h
+color.o: color.h
+mandelbrot.o: mandelbrot.h complex.h
+julia.o: julia.h complex.h
 
 #
 # Housekeeping

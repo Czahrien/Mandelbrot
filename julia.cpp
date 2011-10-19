@@ -1,22 +1,24 @@
 //
-//  mandelbrot.cpp
+//  julia.cpp
 //  Mandelbrot
 //
-//  Created by Benjamin Mayes on 10/13/11.
+//  Created by Benjamin Mayes on 10/18/11.
 //  Copyright 2011 RIT. All rights reserved.
 //
 
+
 #include <cmath>
-#include "mandelbrot.h"
+#include "julia.h"
+#include "complex.h"
 
-mandelbrot::mandelbrot( int window_width, int window_height ) : fractal( window_width, window_height ) {}
+julia::julia( int window_width, int window_height, const complex& c ) : fractal( window_width, window_height ), _c(c) {}
 
-mandelbrot::mandelbrot( const mandelbrot& m ) : fractal(m) {}
+julia::julia( const julia& j ) : fractal(j), _c(j._c) {}
 
-mandelbrot::~mandelbrot() {}
+julia::~julia() {}
 
-void mandelbrot::draw_fractal() {
-    complex c(0.0,0.0);
+void julia::draw_fractal() {
+    complex c;
     double l2 = log(2);
     int i = 0;
     c._y = (-_window_height/2)*_res + _center_y;
@@ -26,17 +28,17 @@ void mandelbrot::draw_fractal() {
             complex z(c);
             i = 0;
             while( z._x * z._x + z._y * z._y < 4.0 && i < _iters  ) {
-                z = z * z + c;
+                z = z * z + _c;
                 ++i;
             }
-
+            
             double d = -1.0;
             if( i < _iters ) {
-                z = z * z + c;
-                z = z * z + c;
+                z = z * z + _c;
+                z = z * z + _c;
                 d = (i + 3 - log(log(z._x * z._x + z._y * z._y))/l2)/_iters;
             }
-
+            
             _pixels[row][col] = d;
             c._x += _res;
         }

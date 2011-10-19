@@ -9,6 +9,7 @@
 #ifndef Mandelbrot_fractal_h
 #define Mandelbrot_fractal_h
 #include <iostream>
+#include "complex.h"
 class fractal {
 public: // *structors
     fractal( int _window_width, int _window_height );

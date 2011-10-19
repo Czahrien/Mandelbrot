@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cmath>
 #include "mandelbrot.h"
+#include "julia.h"
 
 #ifdef __APPLE__
     #include <GLUT/glut.h>
@@ -27,7 +28,7 @@ using namespace std;
 
 #define WINDOW_HORIZONTAL_SIZE 800
 #define WINDOW_VERTICAL_SIZE 600
-mandelbrot m(WINDOW_HORIZONTAL_SIZE,WINDOW_VERTICAL_SIZE);
+julia m(WINDOW_HORIZONTAL_SIZE,WINDOW_VERTICAL_SIZE, complex(-0.8,0.156));
 
 void glut_init(void);
 void glut_display(void);
@@ -41,7 +42,7 @@ void glut_init(void) {
     glPointSize(1.0);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluOrtho2D(0.0, 800.0, 0.0, 600.0);
+    gluOrtho2D(0.0, WINDOW_HORIZONTAL_SIZE, 0.0, WINDOW_VERTICAL_SIZE);
 }
 
 void glut_display(void) {
@@ -133,7 +134,7 @@ int main (int argc, char ** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowSize(800, 600);
+    glutInitWindowSize(WINDOW_HORIZONTAL_SIZE, WINDOW_VERTICAL_SIZE);
     glutInitWindowPosition(100, 150);
     glutCreateWindow("Mandelbrot");
     glutDisplayFunc(glut_display);
