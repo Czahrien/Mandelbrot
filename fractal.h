@@ -12,6 +12,7 @@
 #include "complex.h"
 class fractal {
 public: // *structors
+    fractal();
     fractal( int _window_width, int _window_height );
     fractal( const fractal& f );
     virtual ~fractal();
@@ -27,6 +28,7 @@ public:
     int iters() const;
     void set_iters( int i );
     const double ** get_fractal();
+    void resize( int width, int height );
 protected:
     int _window_width;
     int _window_height;
