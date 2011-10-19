@@ -30,7 +30,7 @@ using namespace std;
 int WINDOW_HORIZONTAL_SIZE =  800;
 int WINDOW_VERTICAL_SIZE =  600;
 
-julia m(WINDOW_HORIZONTAL_SIZE,WINDOW_VERTICAL_SIZE, complex(-0.8,0.156));
+mandelbrot m(WINDOW_HORIZONTAL_SIZE,WINDOW_VERTICAL_SIZE);//, complex(-0.8,0.156));
 
 void glut_init(void);
 void glut_display(void);
@@ -49,29 +49,31 @@ void glut_init(void) {
 
 void glut_display(void) {
     static int up = 0;
+    static unsigned int i = 0;
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
     glBegin(GL_POINTS);
     const double ** pixels = m.get_fractal();
+    i++;
     for( int row = 0; row < WINDOW_VERTICAL_SIZE; ++row) {
         const double* r = pixels[row];
         for( int col = 0; col < WINDOW_HORIZONTAL_SIZE; ++col ) {
             color c = {0,0,0};
             if( *r > 0 ) {
-                c = rgb_from_hue(3600*pow(*r,m.gamma()));
+                c = rgb_from_hue(1800*(0.001*i+*r));
             }
             r++;
             glColor3f(c.r,c.g,c.b);
             glVertex2d(col, row);
         }
     }
-    double g = m.gamma();
+    /*double g = m.gamma();
     if( up ) {
         m.set_gamma(g * 1.01);
         if( g > 3.0 ) up = 0;
     } else {
         m.set_gamma(g / 1.01);
         if( g < 0.05 ) up = 1;
-    }
+    }*/
     glEnd();
     glutSwapBuffers();
 }
@@ -145,6 +147,7 @@ int main (int argc, char ** argv)
         }       
         m.resize(WINDOW_HORIZONTAL_SIZE, WINDOW_VERTICAL_SIZE);
     }
+    m.set_gamma(0.25);
 
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);

@@ -12,7 +12,7 @@ void test(void);
 
 complex::complex() : _x(0.0), _y(0.0) {}
 
-complex::complex( const double& x, const double& y) : _x(x), _y(y) {}
+complex::complex(const double& x, const double& y) : _x(x), _y(y) {}
 
 complex::complex(const double& x) : _x(x), _y(0.0) {}
 
@@ -101,6 +101,30 @@ complex& complex::operator/=(const complex &rhs) {
 
 complex complex::operator-() const {
     return complex(-_x,-_y);
+}
+
+int complex::operator<(const complex &rhs) const {
+    return (_x < rhs._x) || (_x == rhs._x && _y < rhs._y);
+}
+
+int complex:: operator>(const complex &rhs) const {
+    return rhs < *this; 
+}
+
+int complex::operator<=(const complex &rhs) const {
+    return (_x <= rhs._x) || (_x == rhs._x && _y <= rhs._y);
+}
+
+int complex:: operator>=(const complex &rhs) const {
+    return rhs <= *this; 
+}
+
+int complex::operator==(const complex &rhs) const {
+    return (_x == rhs._x && _y == rhs._y);
+}
+
+int complex::operator!=(const complex &rhs) const {
+    return (_x != rhs._x || _y != rhs._y);
 }
 
 std::ostream& operator<<( std::ostream& out, const complex& z ) { 

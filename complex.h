@@ -34,6 +34,12 @@ public: // operator overloads involving complex numbers
     complex& operator*=(const complex& rhs);
     complex& operator/=(const complex& rhs);
     complex& operator=(const complex& rhs);
+    int operator<(const complex& rhs) const;
+    int operator>(const complex& rhs) const;
+    int operator<=(const complex& rhs) const;
+    int operator>=(const complex& rhs) const;
+    int operator==(const complex& rhs) const;
+    int operator!=(const complex& rhs) const;
 public:
     // Real portion of the complex number
     double _x;

@@ -63,6 +63,7 @@ double fractal::gamma() const {
 
 void fractal::set_gamma( const double& g ) {
     _g = g;
+    _redraw = 1;
 }
 
 int fractal::iters() const {
@@ -71,6 +72,7 @@ int fractal::iters() const {
 
 void fractal::set_iters( int i ) {
     _iters = i;
+    _redraw = 1;
 }
 
 void fractal::resize( int width, int height ) {

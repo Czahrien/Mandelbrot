@@ -39,7 +39,7 @@ void mandelbrot::draw_fractal() {
                 d = (i + 3 - log(log(z._x * z._x + z._y * z._y))/l2)/_iters;
             }
 
-            _pixels[row][col] = d;
+            _pixels[row][col] = pow(d,_g);
             c._x += _res;
         }
         c._y += _res;
