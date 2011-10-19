@@ -18,9 +18,9 @@ public: // *structors
 public: 
     virtual void draw_fractal() = 0;
     void center( int x, int y );
-    void center( const long double& x, const long double& y );
-    void zoom_in( const long double& amt );
-    void zoom_out( const long double& amt );
+    void center( const double& x, const double& y );
+    void zoom_in( const double& amt );
+    void zoom_out( const double& amt );
 public:
     double gamma() const;
     void set_gamma( const double& g );
@@ -31,9 +31,9 @@ protected:
     int _window_width;
     int _window_height;
     int _iters;
-    long double _center_x;
-    long double _center_y;
-    long double _res;
+    double _center_x;
+    double _center_y;
+    double _res;
     double _g;
     double **_pixels;
     int _redraw;

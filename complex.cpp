@@ -12,33 +12,33 @@ void test(void);
 
 complex::complex() : _x(0.0), _y(0.0) {}
 
-complex::complex(long double x, long double y) : _x(x), _y(y) {}
+complex::complex( const double& x, const double& y) : _x(x), _y(y) {}
 
-complex::complex(long double x) : _x(x), _y(0.0) {}
+complex::complex(const double& x) : _x(x), _y(0.0) {}
 
 complex::complex(const complex& c) : _x(c._x), _y(c._y) {}
 
 complex::~complex() {}
 
-long double complex::real() const {
+double complex::real() const {
     return _x;
 }
 
-long double complex::imag() const {
+double complex::imag() const {
     return _y;
 }
 
-void complex::set_real( long double r ) {
+void complex::set_real( const double& r ) {
     _x = r;
 }
 
-void complex::set_imag( long double i ) {
+void complex::set_imag( const double& i ) {
     _y = i;
 }
 
 complex complex::operator*(const complex &rhs) const {
-    long double real = _x * rhs._x - _y * rhs._y;
-    long double imag = _x * rhs._y + _y * rhs._x;
+    double real = _x * rhs._x - _y * rhs._y;
+    double imag = _x * rhs._y + _y * rhs._x;
     return complex(real,imag);
 }
 
@@ -46,7 +46,7 @@ complex complex::operator/(const complex &rhs) const {
     //rhs is the denominator, find it's conjugate
     complex conj(rhs._x,-rhs._y);
     complex top = *this * conj;
-    long double bottom = rhs._x * rhs._x + rhs._y * rhs._y;
+    double bottom = rhs._x * rhs._x + rhs._y * rhs._y;
     top._x /= bottom;
     top._y /= bottom;
     return top;
@@ -81,7 +81,7 @@ complex& complex::operator-=(const complex& rhs) {
 }
 
 complex& complex::operator*=(const complex& rhs) {
-    long double real = _x * rhs._x - _y * rhs._y;
+    double real = _x * rhs._x - _y * rhs._y;
     _y = _x * rhs._y + _y * rhs._x;
     _x = real;
     return *this;
@@ -91,7 +91,7 @@ complex& complex::operator/=(const complex &rhs) {
     //rhs is the denominator, find it's conjugate
     complex conj(rhs._x,-rhs._y);
     complex top = *this * conj;
-    long double bottom = rhs._x * rhs._x + rhs._y * rhs._y;
+    double bottom = rhs._x * rhs._x + rhs._y * rhs._y;
     top._x /= bottom;
     top._y /= bottom;
     _x = top._x;

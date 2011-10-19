@@ -14,15 +14,15 @@
 class complex {
 public: // *structors
     complex();
-    complex(long double x, long double y);
-    complex(long double x);
+    complex(const double& x, const double& y);
+    complex(const double& x);
     complex(const complex& c);
     ~complex();
 public:
-    long double real() const;
-    long double imag() const;
-    void set_real(long double r);
-    void set_imag(long double i);
+    double real() const;
+    double imag() const;
+    void set_real(const double& r);
+    void set_imag(const double& i);
 public: // operator overloads involving complex numbers
     complex operator+(const complex& rhs) const;
     complex operator-(const complex& rhs) const;
@@ -36,9 +36,9 @@ public: // operator overloads involving complex numbers
     complex& operator=(const complex& rhs);
 public:
     // Real portion of the complex number
-    long double _x;
+    double _x;
     // Imaginary portion of the complex number
-    long double _y;
+    double _y;
 };
 
 std::ostream& operator<<( std::ostream& out, const complex& z );

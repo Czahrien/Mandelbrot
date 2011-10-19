@@ -39,18 +39,18 @@ void fractal::center( int x, int y ) {
     _redraw = 1;
 }
 
-void fractal::center( const long double& x, const long double& y ) {
+void fractal::center( const double& x, const double& y ) {
     _center_x = x;
     _center_y = y;
     _redraw = 1;
 }
 
-void fractal::zoom_in( const long double& amt ) {
+void fractal::zoom_in( const double& amt ) {
     _res /= amt;
     _redraw = 1;
 }
 
-void fractal::zoom_out( const long double& amt ) {
+void fractal::zoom_out( const double& amt ) {
     _res *= amt;
     _redraw = 1;
 }
